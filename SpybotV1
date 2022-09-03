@@ -1,0 +1,123 @@
+if game.Coregui:FindFirstChild("Spybot") then
+    game.CoreGui.Spybot:Destroy()
+end
+
+local Spybot = Instance.new("ScreenGui")
+local SpybotUI = Instance.new("ImageLabel")
+local TextLabel = Instance.new("TextLabel")
+local cls = Instance.new("TextButton")
+local usertextbox = Instance.new("TextBox")
+local spybtn = Instance.new("TextButton")
+local stopspybtn = Instance.new("TextButton")
+
+Spybot.Name = "Spybot"
+Spybot.Parent = game.CoreGui
+
+SpybotUI.Name = "SpybotUI"
+SpybotUI.Parent = Spybot
+SpybotUI.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+SpybotUI.BackgroundTransparency = 1.000
+SpybotUI.Position = UDim2.new(0.537126303, 0, 0.144212514, 0)
+SpybotUI.Size = UDim2.new(0, 208, 0, 280)
+SpybotUI.Image = "rbxassetid://3570695787"
+SpybotUI.ImageColor3 = Color3.fromRGB(40, 40, 40)
+SpybotUI.ScaleType = Enum.ScaleType.Slice
+SpybotUI.SliceCenter = Rect.new(100, 100, 100, 100)
+SpybotUI.SliceScale = 0.120
+
+TextLabel.Parent = SpybotUI
+TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.BackgroundTransparency = 1.000
+TextLabel.Size = UDim2.new(0, 149, 0, 50)
+TextLabel.Font = Enum.Font.GothamBold
+TextLabel.Text = "Spybot"
+TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.TextScaled = true
+TextLabel.TextSize = 14.000
+TextLabel.TextWrapped = true
+
+cls.Name = "cls"
+cls.Parent = SpybotUI
+cls.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+cls.BackgroundTransparency = 1.000
+cls.Position = UDim2.new(0.716346145, 0, 0, 0)
+cls.Size = UDim2.new(0, 59, 0, 50)
+cls.Font = Enum.Font.SourceSansBold
+cls.Text = "X"
+cls.TextColor3 = Color3.fromRGB(0, 0, 0)
+cls.TextScaled = true
+cls.TextSize = 14.000
+cls.TextWrapped = true
+cls.MouseButton1Click:Connect(function()
+Spybot:Destroy()
+end)
+
+usertextbox.Name = "usertextbox"
+usertextbox.Parent = SpybotUI
+usertextbox.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+usertextbox.BorderColor3 = Color3.fromRGB(255, 255, 255)
+usertextbox.Position = UDim2.new(0.0625, 0, 0.339285731, 0)
+usertextbox.Size = UDim2.new(0, 182, 0, 42)
+usertextbox.Font = Enum.Font.SourceSans
+usertextbox.Text = "Username"
+usertextbox.TextColor3 = Color3.fromRGB(255, 255, 255)
+usertextbox.TextScaled = true
+usertextbox.TextSize = 14.000
+usertextbox.TextWrapped = true
+
+spybtn.Name = "spybtn"
+spybtn.Parent = SpybotUI
+spybtn.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+spybtn.BorderColor3 = Color3.fromRGB(255, 255, 255)
+spybtn.Position = UDim2.new(0.0625, 0, 0.578571439, 0)
+spybtn.Size = UDim2.new(0, 182, 0, 50)
+spybtn.Font = Enum.Font.SourceSansBold
+spybtn.Text = "Spy"
+spybtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+spybtn.TextScaled = true
+spybtn.TextSize = 14.000
+spybtn.TextWrapped = true
+spybtn.MouseButton1Click:Connect(function()
+local username = string.lower(usertextbox.Text)
+local foundchild = false
+local child
+for i,v in pairs(game.Players:GetChildren()) do
+    if string.lower(v.Name) == username then
+        foundchild = true
+        child = v
+    end
+end
+if foundchild = true then
+    _G.spybot = true
+    wait(2)
+    _G.spymsgs = true
+
+    while _G.spybot == true do
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = child.Character.HumanoidRootPart.CFrame * CFrame.new(0,3.5,5)
+        wait()
+    end
+
+    while _G.spymsgs == true do
+        game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("You are currently being Monitored.", "All")
+        wait(60)
+    end
+end
+end)
+
+stopspybtn.Name = "stopspybtn"
+stopspybtn.Parent = SpybotUI
+stopspybtn.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+stopspybtn.BorderColor3 = Color3.fromRGB(255, 255, 255)
+stopspybtn.Position = UDim2.new(0.0625, 0, 0.79285717, 0)
+stopspybtn.Size = UDim2.new(0, 182, 0, 50)
+stopspybtn.Font = Enum.Font.SourceSansBold
+stopspybtn.Text = "Stop Spy"
+stopspybtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+stopspybtn.TextScaled = true
+stopspybtn.TextSize = 14.000
+stopspybtn.TextWrapped = true
+stopspybtn.MouseButton1Click:Connect(function()
+    _G.spybot = false
+    task.wait()
+    _G.spymsgs = false
+end)

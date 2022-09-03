@@ -1,4 +1,4 @@
-if game.Coregui:FindFirstChild("Spybot") then
+if game.CoreGui:FindFirstChild("Spybot") then
     game.CoreGui.Spybot:Destroy()
 end
 
@@ -87,9 +87,8 @@ for i,v in pairs(game.Players:GetChildren()) do
         child = v
     end
 end
-if foundchild = true then
+if foundchild == true then
     _G.spybot = true
-    wait(2)
     _G.spymsgs = true
 
     while _G.spybot == true do
@@ -99,7 +98,7 @@ if foundchild = true then
 
     while _G.spymsgs == true do
         game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("You are currently being Monitored.", "All")
-        wait(60)
+        wait(5)
     end
 end
 end)
